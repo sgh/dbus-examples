@@ -1,5 +1,6 @@
 #include <glib.h>
 #include <dbus/dbus-glib.h>
+#include <dbus/dbus.h>
 
 static gboolean send_ping (DBusConnection *bus);
 
@@ -42,8 +43,9 @@ send_ping (DBusConnection *bus)
   message = dbus_message_new_signal ("/com/burtonini/dbus/ping",
                                      "com.burtonini.dbus.Signal", "Ping");
   /* Append the string "Ping!" to the signal */
+  const char *ping = "Ping!";
   dbus_message_append_args (message,
-                            DBUS_TYPE_STRING, "Ping!",
+                            DBUS_TYPE_STRING, &ping,
                             DBUS_TYPE_INVALID);
   /* Send the signal */
   dbus_connection_send (bus, message, NULL);
