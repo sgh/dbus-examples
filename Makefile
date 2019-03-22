@@ -1,4 +1,5 @@
 
+all: dbus-signal dbus-ping-send dbus-ping-listen
 
 dbus-signal: dbus-signal.c
 	gcc -o $@ $< `pkg-config --cflags --libs dbus-1 dbus-glib-1`
